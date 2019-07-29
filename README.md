@@ -24,6 +24,14 @@ $ [sudo] chmod +x /usr/local/bin/docker-compose
 
 ## Installation guide
 
+After the requirements installed on your environment, now you just have to follow these next steps below:
+
+### Steps
+
+First step is run the Vagrant docker-compose to create the virtual machines that are gonna be used.
+
 ```shell
-$ [sudo] make install
+$ [sudo] docker-compose -f docker-compose.vagrant.yml up -d
 ```
+
+Finnaly, we have our infra in one step provided by tools such as Docker, Vagrant, and Chef.

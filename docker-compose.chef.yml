@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  chef:
+    build: .
+    privileged: true
+    environment:
+      - INFRA=nw
+    volumes:
+      - .:/chef
+      - ~/.ssh:/root/.ssh

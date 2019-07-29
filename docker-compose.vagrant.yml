@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  vagrant:
+    image: kenney/vagrant-alpine
+    working_dir: "/vagrant"
+    volumes:
+      - ./Vagrantfile:/vagrant/Vagrantfile
+      - ./dummy.box:/vagrant/dummy.box
+    command: "bash -c 'vagrant up'"
+    entrypoint: ""
