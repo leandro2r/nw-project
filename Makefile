@@ -1,26 +1,20 @@
 
 PATH=/opt/nw-project
-SERVICE=nw.service
 
-config_cron:
-	@echo "0 19 * * * sudo systemctl stop $(SERVICE)" >> /etc/crontabs/root
-	@echo "0 7 * * * sudo systemctl start $(SERVICE)" >> /etc/crontabs/root
+requirements:
+	@apt update
+	@apt install -y vagrant virtualbox
 
-install: config_cron
+install: requirements
 	@echo "Installing..."
 	@mkdir -p $(PATH)
-	@cp -rf extras/daemon/ docker-compose.yml $(PATH)
-	@cp -f extras/system/* /etc/systemd/system/
-	@systemctl enable $(SERVICE)
-	@systemctl mask systemd-journal-flush keyboard-setup
-	@systemctl daemon-reload
-	@systemctl start $(SERVICE)
+	@cp -f Vagrantfile extras/* $(PATH)
+	@echo "*/5 0-6,19-23 * * * $(PATH)/nw destroy" >> /etc/crontabs/root
+	@echo "*/5 7-18 * * * $(PATH)/nw up" >> /etc/crontabs/root
+	@$(PATH)/nw up
 	@echo "Done!"
 
 uninstall:
 	@echo "Uninstalling..."
-	@systemctl stop $(SERVICE)
-	@systemctl disable $(SERVICE)
 	@rm -rf $(PATH)
-	@rm -rf /etc/systemd/system/$(SERVICE)
 	@echo "Done!"

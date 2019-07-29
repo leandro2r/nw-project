@@ -1,0 +1,15 @@
+[Unit]
+Description=NW project
+After=network.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/nw start
+ExecStop=/usr/local/bin/nw stop
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=multi-user.target

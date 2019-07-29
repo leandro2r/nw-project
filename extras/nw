@@ -1,0 +1,22 @@
+#!/bin/bash
+
+VAGRANT_CWD=/opt/nw-project/Vagrantfile
+
+case "$1" in
+up)
+    if [ ! `vagrant status` ]; then
+        vagrant $1
+    fi
+;;
+status)
+    vagrant $1
+;;
+destroy)
+    if [ `vagrant status` ]; then
+        vagrant $1
+    fi
+;;
+*)
+    echo "Options: $0 {destroy|status|up}"
+    exit 1
+esac
