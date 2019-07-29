@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  app:
+    image: jwilder/whoami
+    deploy: 
+      mode: global
+    networks:
+      - net
+    ports:
+      - 8000:8000
+
+  mgmt:
+    image: lazyteam/lazydocker
+    deploy: 
+      mode: replicated
+    networks:
+      - net
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  net:
+    driver: overlay

@@ -1,0 +1,15 @@
+[Unit]
+Description=NW project
+After=network.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/nw-project/extras/daemon/nw start
+ExecStop=/opt/nw-project/extras/daemon/nw stop
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=multi-user.target
