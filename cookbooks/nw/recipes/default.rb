@@ -1,33 +1,34 @@
 package 'build-essential'
 
 directory '/opt/nw-project' do
-  recursive true
-end 
+    recursive true
+end
 
 cookbook_file '/opt/nw-project/docker-compose.yml' do
-  source 'docker-compose.yml'
+    source 'docker-compose.yml'
 end
 
 cookbook_file '/etc/systemd/system/nw.service' do
-  source 'extras/system/nw.service'
+    source 'extras/system/nw.service'
 end
 
-cookbook_file '/usr/local/bin/nw' do
-  source 'extras/daemon/nw'
-  mode '0755'
+cookbook_file '/usr/local/sbin/nw' do
+    source 'extras/daemon/nw'
+    mode '0755'
 end
 
-if  node['nw']['swarm'] == 'init'
-  execute 'Docker swarm init' do
-    command "docker swarm init --advertise-addr #{node['nw']['swarm_init']}"
-  end
+if node['nw']['swarm'] == 'join'
+    execute 'Docker swarm join' do
+        command "docker swarm join --token #{node['nw']['token']} "\
+                "#{node['nw']['swarm_init']}:2377"
+    end
 else
-  execute 'Docker swarm join' do
-    command "docker swarm join --token #{node['nw']['token']} #{node['nw']['swarm_init']}:2377"
-  end
+    execute 'Docker swarm init' do
+        command "docker swarm init --advertise-addr #{node['ipaddress']}"
+    end
 end
 
 service 'nw.service' do
-  action :start
-  supports enable: true, start: true, stop: true, restart: true
+    action :start
+    supports enable: true, start: true, stop: true, restart: true
 end

@@ -6,8 +6,8 @@ Requires=docker.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/local/bin/nw start
-ExecStop=/usr/local/bin/nw stop
+ExecStart=/usr/local/sbin/nw start
+ExecStop=/usr/local/sbin/nw stop
 StandardOutput=journal+console
 StandardError=journal+console
 

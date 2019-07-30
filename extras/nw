@@ -5,7 +5,7 @@ VAGRANT_CWD=/opt/nw-project/Vagrantfile
 case "$1" in
 up)
     if [ ! `vagrant status` ]; then
-        vagrant $1
+        vagrant $1 nw-project
     fi
 ;;
 status)
@@ -13,7 +13,7 @@ status)
 ;;
 destroy)
     if [ `vagrant status` ]; then
-        vagrant $1
+        vagrant $1 nw-project
     fi
 ;;
 *)

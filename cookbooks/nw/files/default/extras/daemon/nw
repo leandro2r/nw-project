@@ -14,16 +14,16 @@ PATH=/opt/nw-project
 
 case "$1" in
 start)
-    docker stack deploy -c ${PATH}/docker-compose.yml $STACK
+    /usr/bin/docker stack deploy -c ${PATH}/docker-compose.yml $STACK
 ;;
 status)
-    docker service ls
+    /usr/bin/docker service ls
 ;;
 stop)
-    docker stack rm $STACK
-    docker system prune -f
-    docker volume prune -f
-    docker network prune -f
+    /usr/bin/docker stack rm $STACK
+    /usr/bin/docker system prune -f
+    /usr/bin/docker volume prune -f
+    /usr/bin/docker network prune -f
 ;;
 restart)
     $0 stop
