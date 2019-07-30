@@ -10,20 +10,20 @@
 ### END INIT INFO
 
 STACK=nw
-PATH=/opt/nw-project
+STACK_PATH=/opt/nw-project
 
 case "$1" in
 start)
-    /usr/bin/docker stack deploy -c ${PATH}/docker-compose.yml $STACK
+    docker stack deploy -c ${STACK_PATH}/docker-compose.yml $STACK
 ;;
 status)
-    /usr/bin/docker service ls
+    docker service ls
 ;;
 stop)
-    /usr/bin/docker stack rm $STACK
-    /usr/bin/docker system prune -f
-    /usr/bin/docker volume prune -f
-    /usr/bin/docker network prune -f
+    docker stack rm $STACK
+    docker system prune -f
+    docker volume prune -f
+    docker network prune -f
 ;;
 restart)
     $0 stop

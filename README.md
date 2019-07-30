@@ -4,9 +4,14 @@ NW Project
 
 ### Requirements
 
+#### Linux distribution
+
+This project can only be installed on Linux distributions specially Ubuntu Bionic (18.04)
+
 #### Vagrant and Virtualbox:
 
 ```shell
+$ [sudo] apt update
 $ [sudo] apt install -y vagrant virtualbox
 ```
 
@@ -20,6 +25,7 @@ First step is run the Vagrant to create the virtual machines that are gonna be u
 
 ```shell
 $ [sudo] make install
+$ nw start
 ```
 
 Finnaly, we have our infra in one step provided by tools such as Docker, Vagrant, and Chef.

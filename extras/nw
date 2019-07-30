@@ -1,11 +1,11 @@
 #!/bin/bash
 
-VAGRANT_CWD=/opt/nw-project/Vagrantfile
+VAGRANT_PATH=/opt/nw-project/Vagrantfile
 
 case "$1" in
 up)
     if [ ! `vagrant status` ]; then
-        vagrant $1 nw-project
+        cd $VAGRANT_PATH && vagrant $1
     fi
 ;;
 status)
@@ -13,7 +13,7 @@ status)
 ;;
 destroy)
     if [ `vagrant status` ]; then
-        vagrant $1 nw-project
+        vagrant $1
     fi
 ;;
 *)
