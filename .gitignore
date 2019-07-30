@@ -1,0 +1,6 @@
+tmp/*
+.DS_STORE
+.Trash-1000
+._*
+.vagrant
+ubuntu-bionic-18.04-cloudimg-console.log
