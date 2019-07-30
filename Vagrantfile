@@ -9,8 +9,11 @@ Vagrant.configure('2') do |config|
         vb.cpus = '1'
     end
 
+    config.vm.synced_folder "./", "/tmp/swarm"
+
     config.vm.define 'node1' do |node1|
         node1.vm.hostname = 'nw1'
+        node1.vm.network 'private_network', ip: '11.12.13.14'
         node1.vm.network 'forwarded_port', guest: 80, host: 80
 
         node1.vm.provision :chef_zero do |chef|

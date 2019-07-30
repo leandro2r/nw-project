@@ -5,3 +5,5 @@ nodes/*
 ._*
 .vagrant
 ubuntu-bionic-18.04-cloudimg-console.log
+swarm.token
+ip.txt

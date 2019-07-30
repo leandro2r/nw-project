@@ -18,13 +18,33 @@ cookbook_file '/usr/local/sbin/nw' do
 end
 
 if node['nw']['swarm'] == 'join'
+    TOKEN=`cat /tmp/swarm/swarm.token`
+    SWARM_INIT=`cat /tmp/swarm/ip.txt`
+
+    file '/tmp/swarm/swarm.token' do
+        action :nothing
+    end
+
+    file '/tmp/swarm/ip.txt' do
+        action :nothing
+    end
+
     execute 'Docker swarm join' do
-        command "docker swarm join --token #{node['nw']['token']} "\
-                "#{node['nw']['swarm_init']}:2377"
+        command "docker swarm join --token #{TOKEN} #{SWARM_INIT}:2377"
+        notifies :delete, 'file[/tmp/swarm/swarm.token]', :delayed
+        notifies :delete, 'file[/tmp/swarm/ip.txt]', :delayed
     end
 else
     execute 'Docker swarm init' do
         command "docker swarm init --advertise-addr #{node['ipaddress']}"
+    end
+
+    execute 'Add ipaddress to share' do
+        command "echo #{node['ipaddress']} > /tmp/swarm/ip.txt"
+    end
+
+    execute 'Add swarm token to share' do
+        command 'docker swarm join-token -q manager > /tmp/swarm/swarm.token'
     end
 end
 
