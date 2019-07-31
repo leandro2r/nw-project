@@ -1,26 +1,24 @@
 version: '3.7'
 
 services:
-    app:
-        image: jwilder/whoami
-        deploy:
-            mode: global
-        networks:
-            - net
-        ports:
-            - 80:8000
+  app:
+    image: jwilder/whoami
+    deploy: &global
+      mode: global
+    networks: &net
+      - net
+    ports:
+      - 80:8000
 
   mgmt:
-        image: lazyteam/lazydocker
-        deploy:
-            mode: replicated
-        networks:
-            - net
-        stdin_open: true
-        tty: true
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
+    image: lazyteam/lazydocker
+    deploy: *global
+    networks: *net
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
-    net:
-        driver: overlay
+  net:
+    driver: overlay

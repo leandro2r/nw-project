@@ -18,8 +18,8 @@ cookbook_file '/usr/local/sbin/nw' do
 end
 
 if node['nw']['swarm'] == 'join'
-    TOKEN=`cat /tmp/swarm/swarm.token`
-    SWARM_INIT=`cat /tmp/swarm/ip.txt`
+    TOKEN = `cat /tmp/swarm/swarm.token`.strip
+    SWARM_INIT = `cat /tmp/swarm/ip.txt`.strip
 
     file '/tmp/swarm/swarm.token' do
         action :nothing

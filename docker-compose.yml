@@ -1,14 +1,14 @@
 version: '3.7'
 
 services:
-    nw:
-        image: blacklabelops/virtualbox
-        privileged: true
-        working_dir: /nw-project
-        volumes:
-            - /dev:/dev
-            - .:/nw-project
-        ports:
-            - 80:80
-        entrypoint: ["/bin/vagrant"]
-        command: ["up"]
+  nw:
+    image: blacklabelops/virtualbox
+    privileged: true
+    working_dir: /nw-project
+    volumes:
+      - /dev:/dev
+      - .:/nw-project
+    ports:
+      - 80:80
+    entrypoint: ["/bin/vagrant"]
+    command: ["up"]
