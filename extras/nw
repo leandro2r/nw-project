@@ -4,13 +4,13 @@ VAGRANT_PATH=/opt/nw-project
 
 case "$1" in
 up)
-    VAGRANT_PATH=$VAGRANT_PATH vagrant $1
+    cd `echo $VAGRANT_PATH` && vagrant $1
 ;;
 status)
-    vagrant $1
+    cd `echo $VAGRANT_PATH` && vagrant $1
 ;;
 destroy)
-    VAGRANT_PATH=$VAGRANT_PATH vagrant $1
+    cd `echo $VAGRANT_PATH` && vagrant $1
 ;;
 *)
     echo "Options: $0 {destroy|status|up}"
