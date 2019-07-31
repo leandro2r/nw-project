@@ -1,5 +1,10 @@
 NW Project
 ===
+## About
+
+This project is composed by tools using some technologies such as container (Docker swarm and docker-compose), virtualization (Vagrant), infra as code (Chef). In addition, other stuffs as Makefile, shell script, systemd files, and cronjob were here too.
+
+
 ## Setup
 
 ### Requirements
@@ -12,7 +17,7 @@ Next you can use one of these options as requirements:
 
 ```shell
 $ [sudo] apt update
-$ [sudo] apt install -y vagrant virtualbox
+$ [sudo] apt install -y vagrant virtualbox dkms virtualbox-dkms
 ```
 
 #### Docker and Docker-compose
@@ -35,8 +40,6 @@ After the requirements installed on your environment, now you just have to follo
 ### Steps
 
 First step is run the Vagrant to create the virtual machines that are gonna be used.
-
-Finnaly, we have our infra in one step provided by tools such as Vagrant, Docker, and Chef.
 
 #### Default
 
