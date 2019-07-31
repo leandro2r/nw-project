@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 Vagrant::DEFAULT_SERVER_URL.replace('https://vagrantcloud.com')
 
 Vagrant.configure('2') do |config|
@@ -11,6 +15,7 @@ Vagrant.configure('2') do |config|
     end
 
     config.vm.synced_folder "./", "/tmp/swarm"
+    config.vm.box_check_update = false
 
     config.vm.define 'node1' do |node1|
         node1.vm.hostname = 'nw1'
