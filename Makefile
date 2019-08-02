@@ -9,11 +9,6 @@ cron_setup:
 		echo "*/5 7-18 * * * root vagrant up node1 && vagrant up node2" >> /etc/crontab; \
 	fi
 
-all: clean install
-
-clean:
-	@rm -rf .vagrant
-
 install: cron_setup
 	@echo "Installing..."
 	@mkdir -p $(NW_PATH)
@@ -25,3 +20,8 @@ uninstall:
 	@echo "Uninstalling..."
 	@rm -rf $(NW_PATH)
 	@echo "Done!"
+
+clean:
+	@rm -rf .vagrant swarm.token *.log
+
+all: clean install
