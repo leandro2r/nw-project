@@ -19,9 +19,8 @@ Vagrant.configure('2') do |config|
 
   (1..2).each do |i|
     config.vm.define "node#{i}" do |node|
-      node.vm.hostname = "n#{i}"
-      node.vm.network "private_network", ip: "11.12.13.#{i}", auto_config: false
-      # node.vm.network 'forwarded_port', guest: 80, host: 80
+      node.vm.hostname = "nw#{i}"
+      node.vm.network 'private_network', ip: "10.11.12.5#{i}"
 
       node.vm.provision :chef_zero do |chef|
         chef.cookbooks_path = 'cookbooks'
