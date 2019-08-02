@@ -4,6 +4,5 @@ nodes/*
 .Trash-1000
 ._*
 .vagrant
-ubuntu-bionic-18.04-cloudimg-console.log
+*.log
 swarm.token
-ip.txt
