@@ -8,16 +8,16 @@ if [ `id -u` -ne 0 ]; then
 fi
 
 case "$1" in
-up)
+start)
     VAGRANT_CWD=`echo $NW_PATH` vagrant $1
 ;;
 status)
     VAGRANT_CWD=`echo $NW_PATH` vagrant $1
 ;;
-destroy)
+stop)
     VAGRANT_CWD=`echo $NW_PATH` vagrant $1
 ;;
 *)
-    echo "Options: $0 {destroy|status|up}"
+    echo "Options: $0 {start|status|stop}"
     exit 1
 esac

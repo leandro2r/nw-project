@@ -3,10 +3,10 @@ NW_PATH=/opt/nw-project
 
 cron_setup:
 	@if ! grep -e 'nw destroy' /etc/crontab; then \
-		echo "*/5 0-6,19-23 * * * root VAGRANT_CWD=$(NW_PATH) vagrant destroy --force" >> /etc/crontab; \
+		echo "*/1 0-7,18-23 * * * root nw destroy" >> /etc/crontab; \
 	fi
 	@if ! grep -e 'nw up' /etc/crontab; then \
-		echo "*/5 7-18 * * * root VAGRANT_CWD=$(NW_PATH) vagrant up" >> /etc/crontab; \
+		echo "*/1 8-17 * * * root nw up" >> /etc/crontab; \
 	fi
 
 install: cron_setup
