@@ -4,11 +4,11 @@ services:
   nw:
     image: blacklabelops/virtualbox
     privileged: true
-    working_dir: /nw-project
+    working_dir: /root
     volumes:
       - /dev:/dev
-      - .:/nw-project
+      - .:/root
     ports:
-      - 80:80
+      - 8081:80
     entrypoint: ["/bin/vagrant"]
     command: ["up"]

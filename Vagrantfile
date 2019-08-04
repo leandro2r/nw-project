@@ -12,6 +12,7 @@ Vagrant.configure('2') do |config|
   config.vm.provider 'virtualbox' do |vb|
     vb.memory = '512'
     vb.cpus = '1'
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
 
   config.vm.synced_folder "./", "/tmp/swarm"
@@ -20,9 +21,9 @@ Vagrant.configure('2') do |config|
   (1..2).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "nw#{i}"
-      node.vm.network 'private_network', ip: "10.11.12.5#{i}"
+      node.vm.network 'private_network', ip: "192.168.56.1#{i}"
       if i == 1
-        node.vm.network 'forwarded_port', guest: 8080, host: 80
+        node.vm.network 'forwarded_port', guest: 80, host: 8081
       end
 
       node.vm.provision :chef_zero do |chef|

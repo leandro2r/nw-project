@@ -3,10 +3,10 @@ NW_PATH=/opt/nw-project
 
 cron_setup:
 	@if ! grep -e 'nw destroy' /etc/crontab; then \
-		echo "*/5 0-6,19-23 * * * root vagrant destroy --force node1 && vagrant destroy --force node2" >> /etc/crontab; \
+		echo "*/5 0-6,19-23 * * * root VAGRANT_CWD=$(NW_PATH) vagrant destroy --force" >> /etc/crontab; \
 	fi
 	@if ! grep -e 'nw up' /etc/crontab; then \
-		echo "*/5 7-18 * * * root vagrant up node1 && vagrant up node2" >> /etc/crontab; \
+		echo "*/5 7-18 * * * root VAGRANT_CWD=$(NW_PATH) vagrant up" >> /etc/crontab; \
 	fi
 
 install: cron_setup
@@ -14,6 +14,7 @@ install: cron_setup
 	@mkdir -p $(NW_PATH)
 	@cp -rf cookbooks extras roles nodes custom.chef Vagrantfile $(NW_PATH)
 	@ln -sf /opt/nw-project/extras/nw /usr/sbin/nw
+	@cd $(NW_PATH) && vagrant up
 	@echo "Done!"
 
 uninstall:

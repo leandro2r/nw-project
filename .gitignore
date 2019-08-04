@@ -3,6 +3,6 @@ nodes/*
 .DS_STORE
 .Trash-1000
 ._*
-.vagrant
+.vagrant*
 *.log
 swarm.token
