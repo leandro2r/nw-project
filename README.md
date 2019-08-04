@@ -46,7 +46,7 @@ And then, you can access it through http://localhost:8081
 
 ```shell
 $ [sudo] make all
-$ [sudo] nw up
+$ [sudo] nw start
 ```
 
 #### Docker-compose
