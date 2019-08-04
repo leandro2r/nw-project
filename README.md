@@ -40,12 +40,13 @@ After the requirements installed on your environment, now you just have to follo
 ### Steps
 
 First step is run the Vagrant to create the virtual machines that are gonna be used.
+And then, you can access it through http://localhost:8081
 
 #### Default
 
 ```shell
 $ [sudo] make all
-$ nw start
+$ [sudo] nw up
 ```
 
 #### Docker-compose
