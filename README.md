@@ -72,7 +72,7 @@ There is a host command called `nw` which it provides management options on NW P
 $ [sudo] nw {destroy|reload|start|status|stop}
 ```
 
-To follow the infrastructure status, we added the [lazydocker](https://github.com/jesseduffield/lazydocker) container interface, through the command:
+To follow the infrastructure status, the [lazydocker](https://github.com/jesseduffield/lazydocker) was used as a simple terminal UI solution, through the command:
 
 ```shell
 $ [sudo] nw status
