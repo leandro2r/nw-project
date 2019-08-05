@@ -40,7 +40,7 @@ After the requirements installed on your environment, now you just have to follo
 ### Steps
 
 First step is run the Vagrant to create the virtual machines that are gonna be used.
-And then, you can access it through http://localhost:8081
+And then, you can access it through http://localhost:8081 or http://localhost:8082
 
 #### Default
 
@@ -54,3 +54,19 @@ $ [sudo] nw start
 ```shell
 $ docker-compose up
 ```
+
+## Management
+
+There is a host command called `nw` which it provides management options on NW Project service. Those options are:
+
+```shell
+$ [sudo] nw {destroy|reload|start|status|stop}
+```
+
+To follow the infrastructure status, we added the [lazydocker](https://github.com/jesseduffield/lazydocker) container interface, through the command:
+
+```shell
+$ [sudo] nw status
+```
+
+On that view has CPU, Memory, Logs, and more management stuffs in an easy way of usage.
