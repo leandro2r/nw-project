@@ -1,6 +1,7 @@
 #!/bin/bash
 
 NW_PATH=/opt/nw-project
+NODES=2
 
 if [ `id -u` -ne 0 ]; then
     echo "sudo is required"
@@ -8,16 +9,28 @@ if [ `id -u` -ne 0 ]; then
 fi
 
 case "$1" in
+reload)
+    cd `echo $NW_PATH` && vagrant $1
+;;
 start)
-    VAGRANT_CWD=`echo $NW_PATH` vagrant $1
+    cd `echo $NW_PATH` && vagrant up
 ;;
 status)
-    VAGRANT_CWD=`echo $NW_PATH` vagrant $1
+    for ((i=1; i <= $NODES ; i++)); do
+        echo "Status of stack in nw$i"
+        cd `echo $NW_PATH` && vagrant ssh -c\
+        'docker exec -it $(docker ps -f name=nw_mgmt --format "{{.ID}}") lazydocker'\
+        node$i 2> /dev/null
+    done
+    cd `echo $NW_PATH` && vagrant $1
 ;;
 stop)
-    VAGRANT_CWD=`echo $NW_PATH` vagrant $1
+    cd `echo $NW_PATH` && vagrant suspend
+;;
+destroy)
+    cd `echo $NW_PATH` && vagrant $1 --force
 ;;
 *)
-    echo "Options: $0 {start|status|stop}"
+    echo "Options: $0 {reload|start|status|stop}"
     exit 1
 esac

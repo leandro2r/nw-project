@@ -22,13 +22,11 @@ Vagrant.configure('2') do |config|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "nw#{i}"
       node.vm.network 'private_network', ip: "192.168.56.1#{i}"
-      if i == 1
-        node.vm.network 'forwarded_port', guest: 80, host: 8081
-      end
+      node.vm.network 'forwarded_port', guest: 80, host: "808#{i}"
 
       node.vm.provision :chef_zero do |chef|
         chef.cookbooks_path = 'cookbooks'
-        chef.provisioning_path = "/tmp/vagrant-chef-#{1}"
+        chef.provisioning_path = "/tmp/vagrant-chef-#{i}"
         chef.roles_path = 'roles'
         chef.nodes_path = 'nodes'
 
