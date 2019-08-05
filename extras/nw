@@ -31,6 +31,6 @@ destroy)
     cd `echo $NW_PATH` && vagrant $1 --force
 ;;
 *)
-    echo "Options: $0 {reload|start|status|stop}"
+    echo "Options: $0 {destroy|reload|start|status|stop}"
     exit 1
 esac
