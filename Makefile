@@ -24,7 +24,7 @@ uninstall:
 
 clean:
 	@echo "Cleaning..."
-	@rm -rf .vagrant *.log swarm.token
+	@rm -rf .vagrant* *.log swarm.token
 	@echo "Done!"
 
 all: clean install
