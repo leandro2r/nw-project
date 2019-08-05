@@ -4,7 +4,15 @@ NW Project
 
 This project is composed by tools using some technologies such as container (Docker swarm and docker-compose), virtualization (Vagrant), infra as code (Chef). In addition, other stuffs as Makefile, shell script, systemd files, and cronjob were here too.
 
-**All services are provided just in a period of time between 8h~18h. So, if you want to use it, try out only on business hours.**
+### Availability
+
+There are 2 services distributed (global mode) in a docker swarm cluster with 2 nodes (both are manager).
+
+All services are provided just in a period of time between 8h~18h. So, if you want to use it, try out only on business hours.
+
+### Security
+
+The ssh access is only allowed on networks 192.168.0.0/24 and localhost.
 
 ## Setup
 
